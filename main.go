@@ -2,10 +2,8 @@ package main
 
 import (
 	"log"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"nhooyr.io/websocket"
 )
 
 func main() {
@@ -13,13 +11,7 @@ func main() {
 
 	r.Static("/static", "./static/")
 
-	r.Any("/ws", gin.WrapF(func(w http.ResponseWriter, r *http.Request) {
-		c, err := websocket.Accept(w, r, nil)
-		if err != nil {
-			log.Fatalln(err)
-		}
-		defer c.Close(websocket.StatusInternalError, "dupa")
-	}))
+	r.GET("/gateway", gin.WrapF(wse))
 
 	log.Fatalln(r.Run(":8080"))
 }
