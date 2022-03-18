@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"log"
 	"net"
 
 	"github.com/gobwas/ws"
@@ -27,8 +26,6 @@ func init() {
 	// room msg handling
 	go func() {
 		for v := range mainRoom.Msg {
-			log.Println(v) // debug
-
 			// create payload
 			var rawpld = map[string]interface{}{
 				"op":  1,

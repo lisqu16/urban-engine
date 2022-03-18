@@ -34,8 +34,6 @@ func wse(w http.ResponseWriter, r *http.Request) {
 				log.Fatalln(err)
 			}
 
-			log.Printf("%v", msg) // debug
-
 			// handling msg
 			switch msg["op"].(float64) {
 			// case 0: // todo: authenticating
