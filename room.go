@@ -28,8 +28,11 @@ func init() {
 		for v := range mainRoom.Msg {
 			// create payload
 			var rawpld = map[string]interface{}{
-				"op":  1,
-				"msg": v,
+				"op": 1,
+				"data": map[string]interface{}{
+					"type": "message",
+					"msg":  v,
+				},
 			}
 			pld, _ := json.Marshal(rawpld)
 
